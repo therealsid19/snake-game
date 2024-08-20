@@ -13,13 +13,22 @@ export default function SnakeGame() {
     const [score, setScore] = useState(0);
     const [gameInterval, setGameInterval] = useState(null);
     const [isGameOver, setIsGameOver] = useState(false);
-    const [gameWidth, setGameWidth] = useState(window.innerWidth);
-    const [gameHeight, setGameHeight] = useState(window.innerHeight);
+    const [gameWidth, setGameWidth] = useState(1300); // Default width
+    const [gameHeight, setGameHeight] = useState(500); // Default height
 
     useEffect(() => {
+        const handleResize = () => {
+            setGameWidth(window.innerWidth);
+            setGameHeight(window.innerHeight);
+        };
+
         document.addEventListener('keydown', changeDirection);
         window.addEventListener('resize', handleResize);
-        startGame();
+        
+        // Set initial size
+        handleResize();
+
+        // Cleanup
         return () => {
             document.removeEventListener('keydown', changeDirection);
             window.removeEventListener('resize', handleResize);
@@ -37,11 +46,6 @@ export default function SnakeGame() {
             return () => clearInterval(interval);
         }
     }, [direction, snake, isGameOver]);
-
-    const handleResize = useCallback(() => {
-        setGameWidth(window.innerWidth);
-        setGameHeight(window.innerHeight);
-    }, []);
 
     const startGame = useCallback(() => {
         setSnake([{ x: 0, y: 0 }]);

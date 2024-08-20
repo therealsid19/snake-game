@@ -13,8 +13,8 @@ export default function SnakeGame() {
     const [score, setScore] = useState(0);
     const [gameInterval, setGameInterval] = useState(null);
     const [isGameOver, setIsGameOver] = useState(false);
-    const [gameWidth, setGameWidth] = useState(1300); // Default width
-    const [gameHeight, setGameHeight] = useState(500); // Default height
+    const [gameWidth, setGameWidth] = useState(1300);
+    const [gameHeight, setGameHeight] = useState(500);
 
     useEffect(() => {
         const handleResize = () => {
@@ -25,10 +25,8 @@ export default function SnakeGame() {
         document.addEventListener('keydown', changeDirection);
         window.addEventListener('resize', handleResize);
         
-        // Set initial size
         handleResize();
 
-        // Cleanup
         return () => {
             document.removeEventListener('keydown', changeDirection);
             window.removeEventListener('resize', handleResize);

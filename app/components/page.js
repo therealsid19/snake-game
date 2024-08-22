@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 const SPACE_SIZE = 50;
-const SPEED = 100;
+const SPEED = 110;
 
 export default function SnakeGame() {
     const canvasRef = useRef(null);
